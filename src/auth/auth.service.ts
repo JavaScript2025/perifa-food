@@ -33,16 +33,20 @@ export class AuthService{
 
     async login(usuarioLogin: UsuarioLogin){
 
-        const payload = { sub: usuarioLogin.usuario }
-
         const buscaUsuario = await this.usuarioService.findByUsuario(usuarioLogin.usuario)
+
+        if (!buscaUsuario) {
+            throw new HttpException('Usuário não encontrado!', HttpStatus.NOT_FOUND)
+        }
+
+        const payload = { sub: usuarioLogin.usuario }
 
         return{
             id: buscaUsuario.id,
             nome: buscaUsuario.nome,
             usuario: usuarioLogin.usuario,
             senha: '',
-            foto: buscaUsuario.foto,
+            endereco: buscaUsuario.endereco || '',
             token: `Bearer ${this.jwtService.sign(payload)}`,
         }
 
