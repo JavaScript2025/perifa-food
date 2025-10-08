@@ -4,6 +4,9 @@ import { ProdutoModule } from './produto/produto.module';
 import { CategoriaModule } from './categoria/categoria.module';
 import { Produto } from './produto/entities/produto.entity';
 import { Categoria } from './categoria/entities/categoria.entity';
+import { AuthModule } from './auth/auth.module';
+import { Usuario } from './usuario/entities/usuario.entity';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @Module({
   imports: [
@@ -14,11 +17,13 @@ import { Categoria } from './categoria/entities/categoria.entity';
       username: 'root',
       password: 'Root@1234',
       database: 'db_perifafood',
-      entities: [Produto, Categoria],
+      entities: [Produto, Categoria, Usuario],
       synchronize: true,
     }),
     ProdutoModule,
-    CategoriaModule
+    CategoriaModule,
+    AuthModule,
+    UsuarioModule
   ],
   controllers: [],
   providers: [],
