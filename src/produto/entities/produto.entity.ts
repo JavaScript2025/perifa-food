@@ -24,7 +24,7 @@ export class Produto {
     @Column({length: 5000, nullable: false})
     foto: string
 
-    @ManyToOne(() => Categoria, (categoria) => categoria.produtos, {
+    @ManyToOne(() => Categoria, (categoria) => categoria.produto, {
     onDelete: 'CASCADE',
   })
     categoria: Categoria;
