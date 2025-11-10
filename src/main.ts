@@ -5,13 +5,24 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: '*',
+  });
+
   const config = new DocumentBuilder()
-  .setTitle('Perifa Food')
-  .setDescription('Projeto Perifa Food - API Documentação')
-  .setContact("Generation Brasil","http://www.generationbrasil.online","generation@email.com")
-  .setVersion('1.0')
-  .addBearerAuth()
-  .build();
+    .setTitle('Perifa Food')
+    .setDescription('Projeto Perifa Food - API Documentação')
+    .setContact(
+      'Generation Brasil',
+      'http://www.generationbrasil.online',
+      'generation@email.com',
+    )
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/swagger', app, document);
 
