@@ -27,7 +27,7 @@ export class Usuario {
     senha: string
 
     @IsNotEmpty()
-    @Column({length: 255, nullable: false })
+    @Column({length: 255, nullable: true })
     @ApiProperty()  
     endereco: string
 
